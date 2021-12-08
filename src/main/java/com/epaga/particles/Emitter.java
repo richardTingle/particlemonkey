@@ -114,7 +114,8 @@ public class Emitter extends Node {
   // Emitter info
   private int nextIndex = 0;
   private float targetInterval = .00015f, currentInterval = 0;
-  private int emissionsPerSecond, totalParticlesThisEmission, particlesPerEmission;
+  private int particlesPerEmission;
+  private float emissionsPerSecond;
   private boolean useStaticParticles = false;
   private boolean useRandomEmissionPoint = false;
   private boolean particlesFollowEmitter = true;
@@ -253,18 +254,28 @@ public class Emitter extends Node {
 
   /**
    * Specifies the number of times the particle particles will emit particles over
-   * the course of one second
+   * the course of one second (May be a non-whole number)
    *
-   * @param emissionsPerSecond The number of particle emissions per second, must be at least 1
+   * @param emissionsPerSecond The number of particle emissions per second, must be at least 0
    */
-  public void setEmissionsPerSecond(int emissionsPerSecond) {
-    if (emissionsPerSecond > 0) {
-      this.emissionsPerSecond = emissionsPerSecond;
-      targetInterval = 1f / emissionsPerSecond;
+  public void setEmissionsPerSecond(float emissionsPerSecond) {
+    assert emissionsPerSecond >= 0 : "emissionsPerSecond must be positive or zero";
+
+    if (emissionsPerSecond >= 0) {
+        this.emissionsPerSecond = emissionsPerSecond;
+        targetInterval = 1f / emissionsPerSecond;
     }
+
+    /*
+     * If the emissions per second is changed suddenly from zero to a small number it might try to emit
+     * all that currentInterval suddenly (outputting a huge number of partials).
+     * Equally the emissionsPerSecond might be being updated every tick so we don't want to just reset
+     * currentInterval to zero when targetInterval is updated. This clamps it to "just about to emit".
+     */
+    this.currentInterval = Math.min(targetInterval, this.currentInterval );
   }
   
-  public int getEmissionsPerSecond() {
+  public float getEmissionsPerSecond() {
     return emissionsPerSecond;
   }
 
@@ -666,7 +677,7 @@ public class Emitter extends Node {
         if (currentDuration <= duration) {
           // check for particle emission
           if (currentInterval >= targetInterval) {
-            totalParticlesThisEmission = calcParticlesPerEmission();
+            int totalParticlesThisEmission = calcParticlesPerEmission();
             for (int i = 0; i < totalParticlesThisEmission; i++) {
               emitNextParticle();
             }
@@ -840,7 +851,7 @@ public class Emitter extends Node {
     maxParticles = ic.readInt("maxParticles", 30);
     targetInterval = ic.readFloat("targetInterval", .00015f);
     currentInterval = ic.readFloat("currentInterval", 0f);
-    emissionsPerSecond = ic.readInt("emissionsPerSecond", 20);
+    emissionsPerSecond = ic.readFloat("emissionsPerSecond", 20);
     particlesPerEmission = ic.readInt("particlesPerEmission", 0);
     useStaticParticles = ic.readBoolean("useStaticParticles", false);
     useRandomEmissionPoint = ic.readBoolean("useRandomEmissionPoint", false);
