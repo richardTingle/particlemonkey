@@ -244,6 +244,7 @@ public class ParticleData {
     active = false;
     position.zero();
     velocity.zero();
+    color.set(0,0,0,0);
     //size = 0.0f;
     trailSegments.clear();
     if (emitter.getActiveParticleCount() > 0) {
