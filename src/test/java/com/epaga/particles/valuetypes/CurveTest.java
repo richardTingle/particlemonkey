@@ -1,5 +1,6 @@
 package com.epaga.particles.valuetypes;
 
+import com.epaga.particles.valuetypes.curvebuilder.CurveBuilderAtAnchor;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,7 +12,7 @@ public class CurveTest{
         Curve curve = Curve.builder()
                 .anchorPoint(0,0)
                 .anchorPoint(1,10)
-                .end();
+                .build();
 
         assertEquals(0, curve.getValue(0f), 0.001);
         assertEquals(4, curve.getValue(0.4f), 0.001);
@@ -27,7 +28,7 @@ public class CurveTest{
                 .anchorPoint(0,0)
                 .anchorPoint(0.4f,10)
                 .anchorPoint(1f, 10)
-                .end();
+                .build();
 
         assertEquals(0, curve.getValue(0f), 0.001);
         assertEquals(5, curve.getValue(0.2f), 0.001);
@@ -48,7 +49,7 @@ public class CurveTest{
                 .controlPoint1(0.2f, 1)
                 .controlPoint2(0.8f, 0)
                 .anchorPoint(1,1)
-                .end();
+                .build();
 
         //expected values obtained using https://www.desmos.com/calculator/ebdtbxgbq0
 
@@ -71,4 +72,14 @@ public class CurveTest{
         assertEquals(0.5, curve.getValue(0.5f), 0.001);
         assertEquals(1, curve.getValue(1), 0.001);
     }
+
+    @Test(expected = IllegalStateException.class)
+    public void builder_reuseLeadsToException(){
+        CurveBuilderAtAnchor builder = Curve.builder()
+                .anchorPoint(0,0);
+
+        Curve legalUse = builder.build();
+        Curve illegalReuse = builder.build();
+    }
+
 }

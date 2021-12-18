@@ -3,7 +3,7 @@ package com.epaga.particles.valuetypes.curvebuilder;
 import com.epaga.particles.valuetypes.Curve;
 import com.jme3.math.Vector2f;
 
-public class CurveBuilderAtControlPoint1{
+public class CurveBuilderAtControlPoint1 extends CurveBuilderPiece{
 
   Curve curveBeingBuilt;
 
@@ -32,6 +32,7 @@ public class CurveBuilderAtControlPoint1{
    * @return a CurveBuilderAtControlPoint1 a part of the curve builder system
    */
   public CurveBuilderAtControlPoint2 controlPoint2( Vector2f nextControlPoint ){
+    checkReuse();
     return new CurveBuilderAtControlPoint2(curveBeingBuilt, nextControlPoint);
   }
 }
