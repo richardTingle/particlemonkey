@@ -56,7 +56,7 @@ public class CurveBuilderAtAnchor extends CurveBuilderPiece{
    */
   public CurveBuilderAtAnchor anchorPoint(Vector2f nextAnchor ){
     //no checkReuse() as the call to controlPoint1 will do that
-    //simulate a straight line using a Bézier curve
+    //simulate a straight line using a Bézier-like curve
     Vector2f midOne = currentAnchor.mult(2f/3).add(nextAnchor.mult(1f/3));
     Vector2f midTwo = currentAnchor.mult(1f/3).add(nextAnchor.mult(2f/3));
     return controlPoint1(midOne).controlPoint2(midTwo).anchorPoint(nextAnchor);

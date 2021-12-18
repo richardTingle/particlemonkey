@@ -16,7 +16,7 @@ public class CurveBuilderAtControlPoint2 extends CurveBuilderPiece{
   /**
    * Adds a point that the curve go through.
    *
-   * Anchors are the starts and ends of cubic Bézier curves
+   * Anchors are the starts and ends of cubic Bézier-like curves
    * @param x the anchor point's x
    * @param y the anchor point's y
    * @return a CurveBuilderAtAnchor a part of the curve builder system
@@ -26,9 +26,9 @@ public class CurveBuilderAtControlPoint2 extends CurveBuilderPiece{
   }
 
   /**
-   * Adds a point that the curve go through.
+   * Adds a point that the curve will go through.
    *
-   * Anchors are the starts and ends of cubic Bézier curves
+   * Anchors are the starts and ends of cubic Bézier-like curves
    * @param nextAnchor the anchor point
    * @return a CurveBuilderAtAnchor a part of the curve builder system
    */

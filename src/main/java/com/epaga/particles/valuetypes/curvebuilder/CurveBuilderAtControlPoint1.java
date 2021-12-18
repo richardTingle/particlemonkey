@@ -13,9 +13,9 @@ public class CurveBuilderAtControlPoint1 extends CurveBuilderPiece{
   }
 
   /**
-   * Adds a point that the curve will attempt to move towards but may not actually touch.
+   * Adds a point that the curve will attempt to move towards (but may not actually touch).
    *
-   * The 2 control points are used to define a cubic Bézier curve between 2 anchors
+   * The 2 control points are used to define a cubic Bézier-like curve between 2 anchors
    * @param x the control point's x
    * @param y the control point's y
    * @return a CurveBuilderAtControlPoint1 a part of the curve builder system
@@ -27,7 +27,7 @@ public class CurveBuilderAtControlPoint1 extends CurveBuilderPiece{
   /**
    * Adds a point that the curve will attempt to move towards (but may not actually touch).
    *
-   * The 2 control points are used to define a cubic Bézier curve between 2 anchors
+   * The 2 control points are used to define a cubic Bézier-like curve between 2 anchors
    * @param nextControlPoint the control point
    * @return a CurveBuilderAtControlPoint1 a part of the curve builder system
    */
