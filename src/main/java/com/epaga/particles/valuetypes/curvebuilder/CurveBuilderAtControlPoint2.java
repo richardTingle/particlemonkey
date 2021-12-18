@@ -17,6 +17,18 @@ public class CurveBuilderAtControlPoint2{
    * Adds a point that the curve go through.
    *
    * Anchors are the starts and ends of cubic Bézier curves
+   * @param x the anchor point's x
+   * @param y the anchor point's y
+   * @return a CurveBuilderAtAnchor a part of the curve builder system
+   */
+  public CurveBuilderAtAnchor anchorPoint(float x, float y){
+    return anchorPoint(new Vector2f(x, y));
+  }
+
+  /**
+   * Adds a point that the curve go through.
+   *
+   * Anchors are the starts and ends of cubic Bézier curves
    * @param nextAnchor the anchor point
    * @return a CurveBuilderAtAnchor a part of the curve builder system
    */

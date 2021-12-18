@@ -16,6 +16,18 @@ public class CurveBuilderAtControlPoint1{
    * Adds a point that the curve will attempt to move towards but may not actually touch.
    *
    * The 2 control points are used to define a cubic Bézier curve between 2 anchors
+   * @param x the control point's x
+   * @param y the control point's y
+   * @return a CurveBuilderAtControlPoint1 a part of the curve builder system
+   */
+  public CurveBuilderAtControlPoint2 controlPoint2( float x, float y ){
+    return controlPoint2(new Vector2f(x, y));
+  }
+
+  /**
+   * Adds a point that the curve will attempt to move towards (but may not actually touch).
+   *
+   * The 2 control points are used to define a cubic Bézier curve between 2 anchors
    * @param nextControlPoint the control point
    * @return a CurveBuilderAtControlPoint1 a part of the curve builder system
    */
