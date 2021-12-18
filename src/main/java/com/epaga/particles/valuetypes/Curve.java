@@ -56,7 +56,7 @@ public class Curve implements Savable, Cloneable {
    * Note that if the implied gradient entering the control point is different from the implied gradient exiting it then
    * the gradient may sharply change (but the line itself will remain continuous).
    *
-   * Between each pair of control points acts as an independent cubic Bézier curve defined by the following:
+   * Between each pair of control points acts as an independent cubic Bézier-like curve defined by the following:
    *
    * anchor 1 - the 'point' of the first control point (the line will pass through this point)
    * intermediate point 1 - the 'out' of the first control point (the line may not go through this point but it controls the initial direction the line exits anchor 1)
@@ -67,6 +67,9 @@ public class Curve implements Savable, Cloneable {
    * but being smoothed using a quadratic curve such that it may not actually touch the intermediate points.
    *
    * Note; if this is the first control point the in doesn't matter and if its the last control point the out doesn't matter
+   * 
+   * Note; these are Bézier-like curve but not Bézier curves due to the requirement that X must always move forwards
+   * (as it often represents time)
    *
    * @param in
    *          the intermediate point immediately before this anchor point.
