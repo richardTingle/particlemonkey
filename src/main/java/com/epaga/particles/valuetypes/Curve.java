@@ -166,8 +166,9 @@ public class Curve implements Savable, Cloneable {
    * Produces a builder that can be used to fluently build a curve. A Curve will always be continuous (And should
    * move in a positive X direction) but the gradient may change sharply.
    *
-   * It is a series of anchor points connected either by straight line sections or cubic besier curves (defined by
-   * 2 control points).
+   * It is a series of anchor points connected either by straight line sections or cubic Bézier-like curves (defined by
+   * 2 control points). They are bezier-like curves not Bézier curves because of the requirement that X (often
+   * representing time) can only be allowed to move forward
    *
    * In normal usage the first anchor point should be at x = 0, all further points should advance in the X axis and
    * the final anchor point should have x at 1. This is because usually X is the fractional life of the particle
