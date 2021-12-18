@@ -28,6 +28,16 @@ public class CurveBuilderAtAnchor{
 
   /**
    * Produces a straight line between 2 anchor points
+   * @param x the x of the next anchor point
+   * @param y the y of the next anchor point
+   * @return a CurveBuilderAtAnchor a part of the curve builder system
+   */
+  public CurveBuilderAtAnchor anchorPoint(float x, float y){
+    return anchorPoint(new Vector2f(x,y));
+  }
+
+  /**
+   * Produces a straight line between 2 anchor points
    * @param nextAnchor the next anchor point
    * @return a CurveBuilderAtAnchor a part of the curve builder system
    */
@@ -35,7 +45,7 @@ public class CurveBuilderAtAnchor{
     //simulate a straight line using a Bézier curve
     Vector2f midOne = currentAnchor.mult(2f/3).add(nextAnchor.mult(1f/3));
     Vector2f midTwo = currentAnchor.mult(1f/3).add(nextAnchor.mult(2f/3));
-    return controlPoint1(midOne).controlPoint2(midTwo).nextAnchor(nextAnchor);
+    return controlPoint1(midOne).controlPoint2(midTwo).anchorPoint(nextAnchor);
   }
 
   public Curve end(){

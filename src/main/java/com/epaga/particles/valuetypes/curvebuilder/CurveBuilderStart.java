@@ -8,6 +8,10 @@ public class CurveBuilderStart{
 
   Curve curveBeingBuilt = new Curve();
 
+  public CurveBuilderAtAnchor anchorPoint(float x, float y){
+    return anchorPoint(new Vector2f(x,y));
+  }
+
   /**
    * Adds the first anchor point, where the line will start
    * @return CurveBuilderAtAnchor a part of the curve builder system
