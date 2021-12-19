@@ -118,12 +118,15 @@ public class Curve implements Savable, Cloneable {
           float perc = (blendTime - lastPoint.point.x) / (currentPoint.point.x - lastPoint.point.x);
 
           // get the midpoints of the 3 line segments
+          //float p1x = lastPoint.point.x - ((lastPoint.point.x - lastPoint.outControlPoint.x) * perc);
           //what y should be according to the the line from lastPoint.point -> lastPoint.outControlPoint
           float p1y = lastPoint.point.y - ((lastPoint.point.y - lastPoint.outControlPoint.y) * perc);
 
+          //float p2x = lastPoint.outControlPoint.x - ((lastPoint.outControlPoint.x - currentPoint.inControlPoint.x) * perc);
           //what y should be according to the the line from lastPoint.outControlPoint -> currentPoint.inControlPoint
           float p2y = lastPoint.outControlPoint.y - ((lastPoint.outControlPoint.y - currentPoint.inControlPoint.y) * perc);
 
+          //float p3x = currentPoint.inControlPoint.x - ((currentPoint.inControlPoint.x - currentPoint.point.x) * perc);
           //what y should be according to the the line from lastPoint.outControlPoint -> currentPoint.inControlPoint
           float p3y = currentPoint.inControlPoint.y - ((currentPoint.inControlPoint.y - currentPoint.point.y) * perc);
 
