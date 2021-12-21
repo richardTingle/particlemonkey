@@ -185,7 +185,7 @@ public class Curve implements Savable, Cloneable {
    *             .build();
    * }</pre>
    *
-   * This example produces a straight line from (0,0) -> (0.5,0.5), then a cubic Besier curves between (0.5,0.5) -> (1,2) with control points (0.6,0.5) and (0.8,2)
+   * This example produces a straight line from (0,0) to (0.5,0.5), then a cubic Besier curves between (0.5,0.5) to (1,2) with control points (0.6,0.5) and (0.8,2)
    *
    * Note that a builder should not be reused.
    *
