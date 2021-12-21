@@ -63,7 +63,7 @@ public class Curve implements Savable, Cloneable {
    * intermediate point 2 - the 'in' of the second control point (the line may not go through this point but it controls the initial direction the line enters anchor 2)
    * anchor 2 - the 'point' of the second control point (the line will pass through this point)
    *
-   * Instinctively you can think of each section "trying" to go from anchor 1 -> intermediate point 1 -> intermediate point 2 -> anchor 2
+   * Instinctively you can think of each section "trying" to go from anchor 1 to intermediate point 1 to intermediate point 2 to anchor 2
    * but being smoothed using a quadratic curve such that it may not actually touch the intermediate points.
    *
    * Note; if this is the first control point the in doesn't matter and if its the last control point the out doesn't matter
@@ -119,15 +119,15 @@ public class Curve implements Savable, Cloneable {
 
           // get the midpoints of the 3 line segments
           //float p1x = lastPoint.point.x - ((lastPoint.point.x - lastPoint.outControlPoint.x) * perc);
-          //what y should be according to the the line from lastPoint.point -> lastPoint.outControlPoint
+          //what y should be according to the the line from lastPoint.point to lastPoint.outControlPoint
           float p1y = lastPoint.point.y - ((lastPoint.point.y - lastPoint.outControlPoint.y) * perc);
 
           //float p2x = lastPoint.outControlPoint.x - ((lastPoint.outControlPoint.x - currentPoint.inControlPoint.x) * perc);
-          //what y should be according to the the line from lastPoint.outControlPoint -> currentPoint.inControlPoint
+          //what y should be according to the the line from lastPoint.outControlPoint to currentPoint.inControlPoint
           float p2y = lastPoint.outControlPoint.y - ((lastPoint.outControlPoint.y - currentPoint.inControlPoint.y) * perc);
 
           //float p3x = currentPoint.inControlPoint.x - ((currentPoint.inControlPoint.x - currentPoint.point.x) * perc);
-          //what y should be according to the the line from lastPoint.outControlPoint -> currentPoint.inControlPoint
+          //what y should be according to the the line from lastPoint.outControlPoint to currentPoint.inControlPoint
           float p3y = currentPoint.inControlPoint.y - ((currentPoint.inControlPoint.y - currentPoint.point.y) * perc);
 
           // now get the midpoints of the two segments
